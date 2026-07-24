@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TestBridge13 — Rules &amp; Regulations / Reglamento</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 760px;
+         margin: 0 auto; padding: 24px 16px 64px; line-height: 1.6; color: #1d1d1f; }
+  h1 { font-size: 1.6em; } h2 { font-size: 1.25em; margin-top: 2em; }
+  h3 { font-size: 1.05em; margin-top: 1.5em; }
+  .lang-nav { background: #f2f2f7; border-radius: 8px; padding: 12px 16px; }
+  .muted { color: #6e6e73; font-size: 0.9em; }
+  hr.split { margin: 48px 0; border: none; border-top: 2px solid #d2d2d7; }
+  a { color: #0a5bd3; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92em; }
+  th, td { border: 1px solid #d2d2d7; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f2f2f7; }
+</style>
+</head>
+<body>
+
+<p class="lang-nav">
+  <a href="#english">English</a> · <a href="#espanol">Español</a>
+</p>
+
+<!-- ================================================================ -->
+<h1 id="english">TestBridge13 — Rules &amp; Regulations</h1>
+<p class="muted">Rules version: 1.0 · Effective date: July 23, 2026 · Developer: Nix in Umbra · Contact: carlos.ea.zepeda@gmail.com</p>
+
+<p>TestBridge13 ("the platform") connects developers who need closed testers with users willing
+to act as operational testers during a controlled 14-day cycle. These rules apply to every
+user. Registering as a developer or tester requires expressly accepting them; the acceptance is
+recorded with date, rules version, role, device and account.</p>
+
+<h2>1. Scope and nature of the service</h2>
+<ul>
+  <li>Testers are <strong>non-professional, operational testers</strong>. The platform is not a professional QA service.</li>
+  <li>The platform <strong>does not guarantee approval on Google Play</strong>, does not manipulate reviews, public installs or metrics.</li>
+  <li>The platform acts as a secure intermediary: it records evidence, controls payments, moderates messages and enforces these rules.</li>
+</ul>
+
+<h2>2. Tester obligations</h2>
+<ul>
+  <li>Keep TestBridge13 notifications enabled at all times. Notifications are mandatory for operation; disabling them may block new assignments and will not excuse missed tasks.</li>
+  <li>Follow the operating hours from 8:00 to 22:00 in your time zone (validated by the server).</li>
+  <li>Start each daily task on time. In the 1-hour mode, the latest valid start is 21:00 — starting at 21:01 or later counts as a missed day. In the 2-hour mode, start early enough to finish both sessions before 22:00 (latest recommended start: 20:00).</li>
+  <li>Keep the developer's app installed for 14 consecutive days and allow installation verifications (3 signals per day in randomized windows).</li>
+  <li>Report real progress and issue a daily verdict: approved, approved with observations, blocked or failed. Faking activity is fraud.</li>
+  <li>Respect the limit of 8 assigned hours per day across all platform activities. Only one active app assignment at a time.</li>
+  <li>Use PayPal to receive payments and keep your payout account valid.</li>
+  <li>Grant the battery-optimization exemption when requested; refusing it may mark your profile as "at risk of non-compliance".</li>
+</ul>
+
+<h2>3. Developer obligations</h2>
+<ul>
+  <li>Pay the chosen plan through PayPal in a single payment before the cycle starts. The plan activates only after PayPal confirms the payment.</li>
+  <li>Accept that there are <strong>no automatic refunds</strong> (see section 7).</li>
+  <li>Register real app data: name, package name, minimum Android version and a valid closed testing link. The server validates the link and the package.</li>
+  <li>Define clear, achievable tasks within the plan's scope.</li>
+  <li>Never contact testers directly, request external payments or ask for actions outside the plan.</li>
+</ul>
+
+<h2>4. Common commitments</h2>
+<ul>
+  <li>All communication between developers and testers goes through the server, where it may be logged, filtered and moderated for safety, compliance and abuse prevention.</li>
+  <li>Sharing sensitive personal data, threats, insults, spam, external payment attempts and platform-evasion attempts are forbidden and blocked.</li>
+  <li>Both parties accept the mandatory cross evaluation at the end of each cycle (1–5 stars; a written reason is required for 1–2 stars). Evaluations feed an internal reputation and are not published as public reviews.</li>
+  <li>Both parties accept the appeals process described in section 9.</li>
+</ul>
+
+<h2>5. Tasks and daily reports</h2>
+<ul>
+  <li>The cycle lasts 14 consecutive days: 14 tasks (1-hour mode) or 28 tasks (2-hour mode).</li>
+  <li>When starting a task the tester states what will be tested; during the hour they report findings; at the end they issue a verdict.</li>
+  <li>Minimum generic tests: install/open/close without visible errors, basic navigation, one main flow defined by the developer, behavior with slow or interrupted connection, and clear reporting of any failure.</li>
+  <li>Breaking daily continuity without a justification accepted by the server marks the assignment at risk and may trigger replacement or administrative review.</li>
+</ul>
+
+<h2>6. Installation verification</h2>
+<ul>
+  <li>The tester app sends 3 installation signals per day (one per 8-hour block, at a random hour within a random 4-hour window).</li>
+  <li>Days with fewer than 3 valid signals, identical repeated signals, impossible timestamps, an uninstalled app, a different package or prolonged unexplained disconnection are marked as risk.</li>
+  <li>Android may defer background work; the server tolerates reasonable delays and may ask the tester to open the app when a signal is missing. Late signals caused by lack of connectivity are sent when connectivity returns and are marked as late reports.</li>
+</ul>
+
+<h2>7. Payments and refunds</h2>
+<ul>
+  <li><strong>Developers:</strong> single PayPal payment, confirmed by webhook. No refunds for developer decisions, abandonment, wrong information, rule violations, invalid links, non-installable apps or self-caused cancellations. Failures attributable to the platform (e.g. no testers available) are handled as replacement, extension, internal credit or administrative review — not automatic refunds.</li>
+  <li><strong>Testers:</strong> USD 1 per valid hour. Valid hours require a started task, sufficient reports, a final verdict, accepted installation verifications and no detected fraud.</li>
+  <li>Payouts are sent every Monday through PayPal Payouts for the previous week's valid hours. If a cycle starts on Sunday, the first Monday only pays that Sunday's valid hours.</li>
+  <li>Payments may be partially or fully withheld while a sanction or appeal is under review.</li>
+</ul>
+
+<h2>8. Sanctions</h2>
+<table>
+  <tr><th>Level</th><th>Case</th><th>Action</th><th>Effect</th></tr>
+  <tr><td>0</td><td>Minor risk or first notice</td><td>Automatic warning</td><td>No payment impact; repeated events reduce priority.</td></tr>
+  <tr><td>1</td><td>Minor non-compliance</td><td>Formal warning, correction required</td><td>Temporary block on new assignments until resolved.</td></tr>
+  <tr><td>2</td><td>Repeated non-compliance or incomplete evidence</td><td>Administrative review</td><td>Temporary payment hold or plan pause during review.</td></tr>
+  <tr><td>3</td><td>Fraud, falsification, platform evasion, serious misconduct</td><td>Immediate suspension</td><td>Loss of eligibility, possible non-payment of invalid tasks, account review.</td></tr>
+  <tr><td>4</td><td>Severe abuse, harassment, threats, critical recidivism</td><td>Expulsion</td><td>Account closure without refund, per the accepted agreement.</td></tr>
+</table>
+<p>Sanctions are proportional to risk. Suspension, payment holds, expulsion and non-refunds of
+level 2 and above require administrative review or rules previously defined in this agreement.
+The user always receives a notification with the general reason, the action applied and whether
+review is available.</p>
+
+<h2>9. Appeals</h2>
+<ul>
+  <li>Relevant sanctions can be appealed from the app within <strong>72 hours</strong> of the notification.</li>
+  <li>Only one active appeal per sanction. Appeals cannot be edited after submission unless the administrator requests additional information (48-hour response window).</li>
+  <li>Levels 0–1 may resolve automatically once the problem is corrected and validated; level 2 and above require administrative review.</li>
+  <li>Appeals may keep related payments on hold and eligibility blocked until resolution. The decision may confirm, reduce or revert the sanction.</li>
+  <li>Non-appealable cases: extreme abuse, evident fraud or security risks, as defined in the service agreement.</li>
+  <li>Invalid reasons on their own: disliking the sanction, forgetting the task, not seeing notifications because they were disabled, refusing to wait for review, or requesting a refund without explaining the problem.</li>
+</ul>
+
+<h2>10. Privacy and data</h2>
+<ul>
+  <li>The platform stores profiles, assignments, reports, verifications, moderated messages, evaluations, sanctions, appeals and payments as auditable records.</li>
+  <li>Neither party sees the other party's private data, internal moderation details or the other side's appeal contents.</li>
+  <li>Messages may be reviewed (including automated review) for safety, compliance and abuse prevention.</li>
+</ul>
+
+<h2>11. Changes to these rules</h2>
+<p>The rules are versioned. When a new version is published, users must accept it before
+continuing to operate. The accepted version, date, role and device are recorded for each user.</p>
+
+<hr class="split">
+
+<!-- ================================================================ -->
+<h1 id="espanol">TestBridge13 — Reglamento</h1>
+<p class="muted">Versión del reglamento: 1.0 · Fecha de vigencia: 23 de julio de 2026 · Desarrollador: Nix in Umbra · Contacto: carlos.ea.zepeda@gmail.com</p>
+
+<p>TestBridge13 ("la plataforma") conecta desarrolladores que necesitan closed testers con
+usuarios dispuestos a actuar como testers operativos durante un ciclo controlado de 14 días.
+Este reglamento aplica a todos los usuarios. Registrarse como desarrollador o tester requiere
+aceptarlo expresamente; la aceptación se registra con fecha, versión del reglamento, rol,
+dispositivo y cuenta.</p>
+
+<h2>1. Alcance y naturaleza del servicio</h2>
+<ul>
+  <li>Los testers son <strong>testers operativos no profesionales</strong>. La plataforma no es un servicio de QA profesional.</li>
+  <li>La plataforma <strong>no garantiza aprobación en Google Play</strong>, ni manipula reseñas, instalaciones públicas o métricas.</li>
+  <li>La plataforma actúa como intermediario seguro: registra evidencias, controla pagos, modera mensajes y aplica este reglamento.</li>
+</ul>
+
+<h2>2. Obligaciones del tester</h2>
+<ul>
+  <li>Mantener las notificaciones de TestBridge13 activas en todo momento. Son obligatorias para la operación; desactivarlas puede bloquear nuevas asignaciones y no justifica tareas no realizadas.</li>
+  <li>Cumplir el horario operativo de 8:00 a 22:00 en su zona horaria (validada por el servidor).</li>
+  <li>Iniciar cada tarea diaria a tiempo. En modalidad de 1 hora, el inicio máximo válido es a las 21:00 — iniciar a las 21:01 o después cuenta como día no cumplido. En modalidad de 2 horas, iniciar con tiempo suficiente para terminar ambas sesiones antes de las 22:00 (inicio máximo recomendado: 20:00).</li>
+  <li>Mantener la app del desarrollador instalada durante 14 días consecutivos y permitir verificaciones de instalación (3 señales al día en ventanas aleatorias).</li>
+  <li>Reportar avances reales y emitir un veredicto diario: aprobado, aprobado con observaciones, bloqueado o fallido. Falsificar actividad es fraude.</li>
+  <li>Respetar el límite de 8 horas asignadas por día entre todas las actividades de la plataforma. Solo una asignación de app activa a la vez.</li>
+  <li>Usar PayPal para recibir pagos y mantener válida la cuenta de payout.</li>
+  <li>Conceder la exclusión de optimización de batería cuando se solicite; negarla puede marcar el perfil como "riesgo de incumplimiento".</li>
+</ul>
+
+<h2>3. Obligaciones del desarrollador</h2>
+<ul>
+  <li>Pagar el plan elegido por PayPal en una sola exhibición antes de iniciar el ciclo. El plan se activa solo cuando PayPal confirma el pago.</li>
+  <li>Aceptar que <strong>no hay devoluciones automáticas</strong> (ver sección 7).</li>
+  <li>Registrar datos reales de la app: nombre, nombre del paquete, versión mínima de Android y un link válido de closed testing. El servidor valida el link y el paquete.</li>
+  <li>Definir tareas claras y realizables dentro del alcance del plan.</li>
+  <li>No contactar directamente a los testers, no solicitar pagos externos ni pedir acciones fuera del plan.</li>
+</ul>
+
+<h2>4. Compromisos comunes</h2>
+<ul>
+  <li>Toda la comunicación entre desarrolladores y testers pasa por el servidor, donde puede registrarse, filtrarse y moderarse por seguridad, cumplimiento y prevención de abuso.</li>
+  <li>Está prohibido compartir datos personales sensibles, amenazas, insultos, spam, intentos de pago externo e intentos de evadir la plataforma.</li>
+  <li>Ambas partes aceptan la evaluación cruzada obligatoria al final de cada ciclo (1 a 5 estrellas; las calificaciones de 1 o 2 estrellas requieren motivo). Las evaluaciones alimentan una reputación interna y no se publican como reseñas visibles.</li>
+  <li>Ambas partes aceptan el proceso de apelaciones descrito en la sección 9.</li>
+</ul>
+
+<h2>5. Tareas y reportes diarios</h2>
+<ul>
+  <li>El ciclo dura 14 días consecutivos: 14 tareas (modalidad 1 hora) o 28 tareas (modalidad 2 horas).</li>
+  <li>Al iniciar la tarea, el tester escribe qué va a probar; durante la hora reporta hallazgos; al finalizar emite un veredicto.</li>
+  <li>Pruebas genéricas mínimas: instalar/abrir/cerrar sin errores visibles, navegación básica, un flujo principal definido por el desarrollador, comportamiento con conexión lenta o interrumpida, y reporte claro de cualquier fallo.</li>
+  <li>Romper la continuidad diaria sin justificación aceptada por el servidor marca la asignación en riesgo y puede requerir reemplazo o revisión administrativa.</li>
+</ul>
+
+<h2>6. Verificación de instalación</h2>
+<ul>
+  <li>La app del tester envía 3 señales de instalación al día (una por bloque de 8 horas, en una hora aleatoria dentro de una ventana aleatoria de 4 horas).</li>
+  <li>Los días con menos de 3 señales válidas, señales repetidas idénticas, horarios imposibles, app desinstalada, paquete distinto o desconexión prolongada sin recuperación se marcan como riesgo.</li>
+  <li>Android puede diferir tareas en segundo plano; el servidor tolera retrasos razonables y puede pedir al tester abrir la app cuando falte una señal. Las señales tardías por falta de internet se reenvían al recuperar conexión y se marcan como reporte tardío.</li>
+</ul>
+
+<h2>7. Pagos y devoluciones</h2>
+<ul>
+  <li><strong>Desarrolladores:</strong> pago único por PayPal, confirmado por webhook. No hay devoluciones por decisión propia, abandono, información errónea, incumplimiento del reglamento, link inválido, app no instalable o cancelación causada por el propio desarrollador. Las fallas atribuibles a la plataforma (p. ej. falta de testers) se tratan como reemplazo, extensión, crédito interno o revisión administrativa — no como devolución automática.</li>
+  <li><strong>Testers:</strong> USD 1 por hora válida. Las horas válidas requieren tarea iniciada, reportes suficientes, veredicto final, verificaciones de instalación aceptadas y ausencia de fraude detectado.</li>
+  <li>Los pagos se envían cada lunes por PayPal Payouts con base en las horas válidas de la semana anterior. Si el ciclo inicia en domingo, el primer lunes solo se paga lo correspondiente al domingo.</li>
+  <li>Los pagos pueden retenerse parcial o totalmente mientras exista una sanción o apelación en revisión.</li>
+</ul>
+
+<h2>8. Sanciones</h2>
+<table>
+  <tr><th>Nivel</th><th>Caso</th><th>Acción</th><th>Efecto</th></tr>
+  <tr><td>0</td><td>Riesgo leve o primer aviso</td><td>Advertencia automática</td><td>No afecta pagos; si se repite, reduce prioridad.</td></tr>
+  <tr><td>1</td><td>Incumplimiento menor</td><td>Advertencia formal y obligación de corregir</td><td>Bloqueo temporal de nuevas asignaciones hasta resolver.</td></tr>
+  <tr><td>2</td><td>Incumplimiento repetido o evidencia incompleta</td><td>Revisión administrativa</td><td>Retención temporal de pago o pausa del plan durante la revisión.</td></tr>
+  <tr><td>3</td><td>Fraude, falsificación, evasión de plataforma o mala conducta grave</td><td>Suspensión inmediata</td><td>Pérdida de elegibilidad, posible no pago de tareas inválidas y revisión de cuenta.</td></tr>
+  <tr><td>4</td><td>Abuso grave, acoso, amenazas, manipulación o reincidencia crítica</td><td>Expulsión del sistema</td><td>Cierre de cuenta sin devolución, según el acuerdo aceptado.</td></tr>
+</table>
+<p>Las sanciones son proporcionales al riesgo. La suspensión, retención de pago, expulsión y no
+devolución de nivel 2 en adelante requieren revisión administrativa o reglas previamente
+definidas en este acuerdo. El usuario siempre recibe una notificación con el motivo general, la
+acción aplicada y si existe opción de revisión.</p>
+
+<h2>9. Apelaciones</h2>
+<ul>
+  <li>Las sanciones relevantes pueden apelarse desde la app dentro de las <strong>72 horas</strong> siguientes a la notificación.</li>
+  <li>Solo una apelación activa por sanción. No puede editarse después de enviarla, salvo que el administrador solicite información adicional (plazo de respuesta: 48 horas).</li>
+  <li>Los niveles 0 y 1 pueden resolverse automáticamente si el usuario corrige el problema y el servidor lo valida; el nivel 2 o superior requiere revisión administrativa.</li>
+  <li>La apelación puede mantener retenidos los pagos relacionados y bloqueada la elegibilidad hasta la resolución. La decisión puede confirmar, reducir o revertir la sanción.</li>
+  <li>Casos no apelables: abuso extremo, fraude evidente o riesgo de seguridad, según el acuerdo de servicio.</li>
+  <li>Motivos no válidos por sí solos: no estar de acuerdo con la sanción sin argumentos, olvidar la tarea, no ver notificaciones por haberlas desactivado, no querer esperar la revisión o pedir devolución sin explicar el problema.</li>
+</ul>
+
+<h2>10. Privacidad y datos</h2>
+<ul>
+  <li>La plataforma conserva perfiles, asignaciones, reportes, verificaciones, mensajes moderados, evaluaciones, sanciones, apelaciones y pagos como registros auditables.</li>
+  <li>Ninguna parte ve los datos privados de la otra, los detalles internos de moderación ni el contenido de la apelación de la contraparte.</li>
+  <li>Los mensajes pueden revisarse (incluida revisión automatizada) por seguridad, cumplimiento y prevención de abuso.</li>
+</ul>
+
+<h2>11. Cambios al reglamento</h2>
+<p>El reglamento está versionado. Al publicarse una versión nueva, el usuario deberá aceptarla
+para seguir operando. Se registra la versión aceptada, fecha, rol y dispositivo de cada
+usuario.</p>
+
+</body>
+</html>
