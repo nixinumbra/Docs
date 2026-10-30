@@ -66,6 +66,9 @@ usan para publicidad ni se comparten con terceros, y ninguna persona los lee.</p
   cifrados con una llave protegida por el sistema Android; los de Google los
   administra Google Play services. No se incluyen en las copias de seguridad del
   dispositivo.</li>
+  <li><strong>Perfiles:</strong> el nombre, el avatar elegido y si es un perfil para
+  niños. Si le pones contraseña a un perfil, no se guarda la contraseña sino una huella
+  cifrada de ella (hash con sal) que sirve para comprobarla.</li>
   <li><strong>Preferencias:</strong> idioma, la nube elegida para sincronizar y demás
   ajustes.</li>
 </ul>
@@ -73,7 +76,8 @@ usan para publicidad ni se comparten con terceros, y ninguna persona los lee.</p
 
 <h2>5. Sincronización de tus carpetas</h2>
 <p>Para que tus carpetas aparezcan igual en el televisor y en el teléfono, Mosaico guarda
-una copia de ellas (los mismos datos de la sección 4, sin tus inicios de sesión) en un
+una copia de ellas y de tus perfiles (los mismos datos de la sección 4, sin tus
+inicios de sesión ni el perfil elegido en cada equipo) en un
 archivo dentro de la carpeta privada de la app en tu OneDrive o tu Google Drive. Esa
 carpeta pertenece a tu cuenta; el desarrollador no tiene acceso a ella.</p>
 
@@ -172,6 +176,9 @@ human.</p>
   <li><strong>Sign-in:</strong> Microsoft access permissions are stored encrypted with
   a key protected by the Android system; Google's are managed by Google Play services.
   They are excluded from device backups.</li>
+  <li><strong>Profiles:</strong> the name, the chosen avatar, and whether it is a kids
+  profile. If you set a password on a profile, the password itself is not stored, only a
+  salted hash of it used to check it.</li>
   <li><strong>Preferences:</strong> language, the cloud chosen for syncing, and other
   settings.</li>
 </ul>
@@ -179,7 +186,8 @@ human.</p>
 
 <h2>5. Syncing your folders</h2>
 <p>So your folders look the same on the TV and on the phone, Mosaico keeps a copy of them
-(the same data as in section 4, without your sign-ins) in a file inside the app's
+and of your profiles (the same data as in section 4, without your sign-ins or the profile
+chosen on each device) in a file inside the app's
 private folder in your OneDrive or Google Drive. That folder belongs to your account;
 the developer has no access to it.</p>
 
