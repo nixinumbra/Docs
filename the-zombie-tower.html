@@ -1,61 +1,439 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Zombie Tower — Nixinumbra</title>
+<title>The Zombie Tower — Defiende la torre. Descarga gratis.</title>
+<meta name="description" content="The Zombie Tower: juego de defensa de torres para Android. Coloca armas, derrota a los reyes zombis y descubre nuevas regiones. Gratis en Google Play.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Zombie Tower — Nixinumbra">
+<meta property="og:description" content="Defiende la torre de oleadas interminables de zombis. Gratis en Google Play.">
+<meta property="og:image" content="https://nixinumbra.github.io/Docs/assets/zombie-tower/icon_free.webp">
+<meta property="og:url" content="https://nixinumbra.github.io/Docs/the-zombie-tower.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0a10">
+<link rel="icon" type="image/webp" href="assets/zombie-tower/icon_free.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 760px;
-         margin: 0 auto; padding: 24px; line-height: 1.6; color: #222; }
-  h1 { font-size: 1.6em; } h2 { font-size: 1.2em; margin-top: 1.6em; }
-  hr { margin: 3em 0; border: none; border-top: 1px solid #ccc; }
-  .meta { color: #666; font-size: 0.9em; }
+  :root {
+    --bg: #0b0a10;
+    --bg2: #15131c;
+    --panel: #1c1925;
+    --line: #2d2838;
+    --fire: #ff8a1f;
+    --ember: #ffb347;
+    --blood: #c8102e;
+    --green: #8fd14f;
+    --ice: #7fd0ff;
+    --text: #f1ece4;
+    --muted: #b7afa5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Nunito", -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6; overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--ember); }
+  h1, h2, h3 { margin: 0; }
+  .creepy { font-family: "Creepster", "Impact", sans-serif; font-weight: 400; letter-spacing: .03em; }
+
+  /* ---- language switch ---- */
+  html[data-lang="es"] .en { display: none !important; }
+  html[data-lang="en"] .es { display: none !important; }
+  .lang {
+    position: fixed; top: 14px; right: 16px; z-index: 50;
+    display: flex; gap: 4px; padding: 4px; border-radius: 999px;
+    background: rgba(11,10,16,.75); border: 1px solid var(--line); backdrop-filter: blur(6px);
+  }
+  .lang button {
+    border: 0; background: transparent; color: var(--muted); font: 800 13px "Nunito", sans-serif;
+    padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  }
+  html[data-lang="es"] .lang [data-set="es"], html[data-lang="en"] .lang [data-set="en"] {
+    background: var(--fire); color: #1a0d00;
+  }
+
+  /* ---- buttons ---- */
+  .btn-play {
+    display: inline-flex; align-items: center; gap: 14px; text-align: left;
+    padding: 16px 28px; border-radius: 16px; text-decoration: none;
+    background: linear-gradient(180deg, #ffa033 0%, #ff7a00 55%, #e85d00 100%);
+    color: #1a0d00; font-weight: 900; font-size: 1.15rem; line-height: 1.15;
+    box-shadow: 0 0 0 3px rgba(255,138,31,.25), 0 14px 40px rgba(255,122,0,.35);
+    transition: transform .15s ease, box-shadow .15s ease;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .btn-play:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 0 4px rgba(255,138,31,.35), 0 18px 50px rgba(255,122,0,.5); }
+  .btn-play svg { width: 34px; height: 34px; flex: none; }
+  .btn-play small { display: block; font-size: .75rem; font-weight: 800; opacity: .8; letter-spacing: .08em; text-transform: uppercase; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(255,138,31,.25), 0 14px 40px rgba(255,122,0,.35); }
+    50% { box-shadow: 0 0 0 8px rgba(255,138,31,.12), 0 14px 56px rgba(255,122,0,.55); }
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+  .pill {
+    font-size: .85rem; font-weight: 800; color: var(--text);
+    padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18);
+    background: rgba(0,0,0,.45); backdrop-filter: blur(4px);
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative; min-height: 100svh; display: grid; place-items: center;
+    padding: 90px 16px 120px; text-align: center; isolation: isolate; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -2;
+    background: url("assets/zombie-tower/cine_pantano_1.webp") center / cover no-repeat;
+    transform: scale(1.04); animation: drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift { from { transform: scale(1.04) translateY(0); } to { transform: scale(1.1) translateY(-14px); } }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(60% 50% at 50% 60%, rgba(255,110,0,.22), transparent 70%),
+      linear-gradient(180deg, rgba(11,10,16,.55) 0%, rgba(11,10,16,.25) 40%, rgba(11,10,16,.95) 100%);
+  }
+  .hero-inner { max-width: 760px; width: 100%; position: relative; z-index: 1; }
+  .hero-logo {
+    width: min(520px, 86vw); margin: 0 auto 10px;
+    filter: drop-shadow(0 0 28px rgba(255,120,0,.55)) drop-shadow(0 18px 24px rgba(0,0,0,.7));
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from { filter: drop-shadow(0 0 18px rgba(255,120,0,.4)) drop-shadow(0 18px 24px rgba(0,0,0,.7)); }
+    to   { filter: drop-shadow(0 0 40px rgba(255,140,0,.75)) drop-shadow(0 18px 24px rgba(0,0,0,.7)); }
+  }
+  .tagline {
+    font-size: clamp(1.6rem, 4.6vw, 2.7rem); line-height: 1.15; color: #fff;
+    text-shadow: 0 2px 0 #000, 0 0 26px rgba(255,122,0,.6);
+    margin: 0 0 10px;
+  }
+  .tagline em { font-style: normal; color: var(--ember); }
+  .lead { color: #e8e1d6; font-size: clamp(1rem, 2.2vw, 1.2rem); max-width: 600px; margin: 0 auto 28px; text-shadow: 0 1px 8px #000; }
+  .zombie {
+    position: absolute; bottom: -8px; z-index: 0; pointer-events: none;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,.8));
+    animation: bob 3.6s ease-in-out infinite;
+  }
+  .zombie.l { left: -2%; width: min(300px, 28vw); }
+  .zombie.r { right: -1%; width: min(300px, 26vw); animation-delay: -1.6s; transform: scaleX(-1); }
+  @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+  @media (max-width: 720px) {
+    .zombie { opacity: .55; }
+    .zombie.l { width: 32vw; left: -8%; }
+    .zombie.r { width: 30vw; right: -6%; }
+  }
+  .scroll-hint { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; color: var(--muted); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; }
+  .scroll-hint::after { content: ""; display: block; width: 1px; height: 36px; margin: 8px auto 0; background: linear-gradient(var(--ember), transparent); }
+
+  /* ---- sections ---- */
+  section { padding: 84px 16px; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .kicker { color: var(--green); font-weight: 900; letter-spacing: .22em; text-transform: uppercase; font-size: .78rem; margin-bottom: 8px; }
+  h2.creepy { font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--fire); text-shadow: 0 3px 0 #000, 0 0 30px rgba(255,122,0,.35); line-height: 1.05; }
+  .intro { color: var(--muted); font-size: 1.1rem; max-width: 720px; margin: 14px 0 44px; }
+  .center { text-align: center; }
+  .center .intro { margin-left: auto; margin-right: auto; }
+
+  /* reveal on scroll */
+  .rv { opacity: 0; translate: 0 26px; transition: opacity .7s ease, translate .7s ease; }
+  .rv.in { opacity: 1; translate: 0 0; }
+
+  /* feature cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+  .card {
+    background: linear-gradient(180deg, var(--panel), var(--bg2)); border: 1px solid var(--line);
+    border-radius: 20px; padding: 26px 22px 24px; position: relative; overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(255,138,31,.6); }
+  .card img { height: 150px; width: auto; margin: 0 auto 18px; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,.6)); }
+  .card h3 { font-size: 1.35rem; color: #fff; margin-bottom: 6px; }
+  .card p { margin: 0; color: var(--muted); }
+
+  /* gallery */
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; } .fig img { height: 140px; } }
+  .fig {
+    margin: 0; text-align: center; padding: 16px 10px 14px; border-radius: 18px;
+    background: radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.05), transparent 60%), var(--bg2);
+    border: 1px solid var(--line); transition: transform .2s ease, border-color .2s ease;
+  }
+  .fig:hover { transform: translateY(-5px) scale(1.03); border-color: rgba(143,209,79,.5); }
+  .fig img { height: 170px; width: auto; margin: 0 auto 10px; object-fit: contain; filter: drop-shadow(0 12px 16px rgba(0,0,0,.7)); }
+  .fig figcaption { font-weight: 800; font-size: .95rem; color: #fff; }
+  .fig small { display: block; color: var(--muted); font-weight: 600; font-size: .78rem; }
+  .enemies .fig:hover { border-color: rgba(200,16,46,.6); }
+  .fig.boss { border-color: rgba(255,138,31,.45); background: radial-gradient(120% 80% at 50% 0%, rgba(255,122,0,.14), transparent 60%), var(--bg2); }
+  .fig.boss figcaption { color: var(--ember); }
+
+  /* map */
+  .map { background: radial-gradient(80% 60% at 50% 0%, rgba(127,208,255,.08), transparent 70%), var(--bg); }
+  .map-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .map-grid { grid-template-columns: 1fr; } }
+  .map-img { border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 60px rgba(0,0,0,.6); }
+  .diffs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+  .diff { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg2); font-weight: 900; display: flex; align-items: center; gap: 10px; }
+  .diff::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--d); box-shadow: 0 0 10px var(--d); }
+  .diff small { color: var(--muted); font-weight: 600; font-size: .8rem; display: block; }
+
+  /* swamp band */
+  .swamp {
+    position: relative; isolation: isolate; text-align: center; padding: 120px 16px;
+    background: url("assets/zombie-tower/fondo_region_pantano.webp") center / cover no-repeat;
+  }
+  .swamp::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,10,16,.85), rgba(11,10,16,.35) 50%, rgba(11,10,16,.9)); }
+  .swamp h2.creepy { color: #a7f3ff; text-shadow: 0 3px 0 #000, 0 0 30px rgba(127,208,255,.5); }
+  .swamp .intro { color: #e4f3f7; }
+  .swamp img.queen { width: min(260px, 50vw); margin: 0 auto 10px; filter: drop-shadow(0 0 24px rgba(127,255,180,.35)) drop-shadow(0 20px 20px rgba(0,0,0,.8)); }
+
+  /* final cta */
+  .final {
+    position: relative; isolation: isolate; text-align: center; padding: 140px 16px;
+    background: url("assets/zombie-tower/cine_reynigromantecaido.webp") center / cover no-repeat;
+  }
+  .final::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,10,16,.9), rgba(40,5,5,.55) 50%, rgba(11,10,16,.95)); }
+  .final h2.creepy { font-size: clamp(2.6rem, 7vw, 4.6rem); color: #fff; text-shadow: 0 4px 0 #000, 0 0 40px rgba(255,60,30,.7); }
+  .final .intro { color: #f3e6e0; }
+  .final .mini { color: var(--muted); font-size: .85rem; margin-top: 16px; }
+
+  /* footer */
+  footer { padding: 50px 16px 60px; border-top: 1px solid var(--line); background: #070609; }
+  .foot { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 26px; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { width: 64px; border-radius: 14px; }
+  .brand strong { display: block; letter-spacing: .14em; }
+  .brand span { color: var(--muted); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; }
+  .links { display: flex; flex-wrap: wrap; gap: 18px; font-weight: 700; }
+  .copy { width: 100%; color: var(--muted); font-size: .8rem; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .rv { opacity: 1; translate: 0 0; } }
 </style>
 </head>
 <body>
 
-<h1>The Zombie Tower</h1>
-<p class="meta">Un juego de Nixinumbra · Contacto: nixinumbra13.co@gmail.com</p>
+<div class="lang" role="group" aria-label="Idioma / Language">
+  <button type="button" data-set="es">ES</button>
+  <button type="button" data-set="en">EN</button>
+</div>
 
-<h2>¿Qué es The Zombie Tower?</h2>
-<p><strong>The Zombie Tower</strong> es un juego de defensa de torres para Android:
-coloca armas y torres para defender una torre antigua de oleadas interminables de
-zombis. Desbloquea armas, tecnologías y mejoras permanentes, derrota a los reyes
-zombis, descubre logros y coleccionables secretos, y enfrenta el desafío final del
-Rey Nigromante en cuatro dificultades.</p>
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <img class="zombie l" src="assets/zombie-tower/z_normal_1.webp" alt="">
+  <img class="zombie r" src="assets/zombie-tower/z_pequena_1.webp" alt="">
+  <div class="hero-inner">
+    <img class="hero-logo" src="assets/zombie-tower/title.webp" alt="The Zombie Tower">
+    <h1 class="tagline creepy">
+      <span class="es">Defiende la torre. <em>Sobrevive</em> a las oleadas.</span>
+      <span class="en">Defend the tower. <em>Survive</em> the waves.</span>
+    </h1>
+    <p class="lead">
+      <span class="es">Un juego de defensa de torres para Android: coloca armas, mejora tus tecnologías y derrota a los reyes zombis antes de que lleguen a la puerta.</span>
+      <span class="en">A tower-defense game for Android: place weapons, upgrade your technologies and defeat the zombie kings before they reach the gate.</span>
+    </p>
+    <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.nixinumbra.thezombietower" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1a0d00" d="M4 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 4 3.5z"/></svg>
+      <span>
+        <small class="es">Gratis en Google Play</small><small class="en">Free on Google Play</small>
+        <span class="es">Descarga el juego</span>
+        <span class="en">Download the game</span>
+      </span>
+    </a>
+    <div class="pill-row">
+      <span class="pill es">🧟 Gratis</span><span class="pill en">🧟 Free</span>
+      <span class="pill es">📴 Juega sin conexión</span><span class="pill en">📴 Play offline</span>
+      <span class="pill es">🏆 Logros de Google Play Juegos</span><span class="pill en">🏆 Google Play Games achievements</span>
+      <span class="pill es">🌎 Español e inglés</span><span class="pill en">🌎 English &amp; Spanish</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="es">Sigue bajando</span><span class="en">Scroll</span></div>
+</header>
 
-<p>El juego se juega completo sin conexión, no muestra publicidad y no recolecta
-datos para el desarrollador. Su única función en línea es la integración opcional
-con Google Play Juegos para los logros.</p>
+<!-- ======================= FEATURES ======================= -->
+<section id="juego">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker"><span class="es">El juego</span><span class="en">The game</span></div>
+      <h2 class="creepy"><span class="es">Los muertos no se cansan</span><span class="en">The dead never get tired</span></h2>
+      <p class="intro">
+        <span class="es">Cada oleada trae más zombis, más rápidos y más raros. Tú tienes una torre antigua, un tablero y un arsenal que crece partida tras partida.</span>
+        <span class="en">Every wave brings more zombies, faster and stranger. You have an ancient tower, a board and an arsenal that grows game after game.</span>
+      </p>
+    </div>
+    <div class="cards">
+      <article class="card rv">
+        <img src="assets/zombie-tower/a_nuclear_1_torre_fuego.webp" alt="" loading="lazy">
+        <h3><span class="es">Arma la defensa</span><span class="en">Build the defense</span></h3>
+        <p><span class="es">Cañones, láseres, hielo, electricidad, un reactor nuclear y hasta un dragón. Elige dónde ponerlos y cuándo mejorarlos.</span>
+           <span class="en">Cannons, lasers, ice, lightning, a nuclear reactor and even a dragon. Choose where to place them and when to upgrade.</span></p>
+      </article>
+      <article class="card rv">
+        <img src="assets/zombie-tower/z_rey_nomuerto.webp" alt="" loading="lazy">
+        <h3><span class="es">Derrota a los reyes</span><span class="en">Defeat the kings</span></h3>
+        <p><span class="es">Cada tipo de zombi tiene su rey, y cada rey tiene su truco. Al final te espera el Rey Nigromante.</span>
+           <span class="en">Every kind of zombie has its king, and every king has a trick. The Necromancer King waits at the end.</span></p>
+      </article>
+      <article class="card rv">
+        <img src="assets/zombie-tower/el_dragon.webp" alt="" loading="lazy">
+        <h3><span class="es">Progresa para siempre</span><span class="en">Progress forever</span></h3>
+        <p><span class="es">Tecnologías, mejoras permanentes, gemas, logros y coleccionables secretos. Cada partida te deja algo.</span>
+           <span class="en">Technologies, permanent upgrades, gems, achievements and secret collectibles. Every run leaves you something.</span></p>
+      </article>
+      <article class="card rv">
+        <img src="assets/zombie-tower/a_farola_1.png" alt="" loading="lazy">
+        <h3><span class="es">Descubre la historia</span><span class="en">Discover the story</span></h3>
+        <p><span class="es">Cinemáticas, un diario y personajes que aparecen cuando menos lo esperas. ¿Quién levanta a los muertos?</span>
+           <span class="en">Cutscenes, a journal and characters who show up when you least expect them. Who is raising the dead?</span></p>
+      </article>
+    </div>
+  </div>
+</section>
 
-<h2>Privacidad</h2>
-<p>Consulta la
-<a href="the-zombie-tower-privacy-policy.html">Política de Privacidad de The Zombie Tower</a>.</p>
+<!-- ======================= ARSENAL ======================= -->
+<section id="arsenal" style="background: var(--bg2);">
+  <div class="wrap center">
+    <div class="rv">
+      <div class="kicker"><span class="es">Arsenal</span><span class="en">Arsenal</span></div>
+      <h2 class="creepy"><span class="es">Algo para cada zombi</span><span class="en">Something for every zombie</span></h2>
+      <p class="intro"><span class="es">Combina armas y torres: unas frenan, otras queman, otras alcanzan a los que vuelan.</span>
+         <span class="en">Combine weapons and towers: some slow, some burn, some reach the ones that fly.</span></p>
+    </div>
+    <div class="gallery">
+      <figure class="fig rv"><img src="assets/zombie-tower/a_canon_1.webp" alt="" loading="lazy"><figcaption><span class="es">Cañón</span><span class="en">Cannon</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_hielo_1.webp" alt="" loading="lazy"><figcaption><span class="es">Hielo</span><span class="en">Ice</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_electrico_1.webp" alt="" loading="lazy"><figcaption><span class="es">Eléctrica</span><span class="en">Electric</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_laser_1.webp" alt="" loading="lazy"><figcaption><span class="es">Láser</span><span class="en">Laser</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_misiles_1.webp" alt="" loading="lazy"><figcaption><span class="es">Misiles</span><span class="en">Missiles</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_nuclear_1_torre_fuego.webp" alt="" loading="lazy"><figcaption><span class="es">Nuclear</span><span class="en">Nuclear</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/a_dama_1.webp" alt="" loading="lazy"><figcaption><span class="es">La Dama</span><span class="en">The Lady</span></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/el_dragon.webp" alt="" loading="lazy"><figcaption><span class="es">El Dragón</span><span class="en">The Dragon</span></figcaption></figure>
+    </div>
+  </div>
+</section>
 
-<h2>Contacto</h2>
-<p>Dudas o comentarios: <a href="mailto:nixinumbra13.co@gmail.com">nixinumbra13.co@gmail.com</a></p>
+<!-- ======================= ENEMIES ======================= -->
+<section id="enemigos" class="enemies">
+  <div class="wrap center">
+    <div class="rv">
+      <div class="kicker" style="color: var(--blood);"><span class="es">Enemigos</span><span class="en">Enemies</span></div>
+      <h2 class="creepy"><span class="es">Ellos ya vienen</span><span class="en">They are already coming</span></h2>
+      <p class="intro"><span class="es">Zombis que arden, que congelan, que desaparecen, que curan a los demás. Y sus reyes.</span>
+         <span class="en">Zombies that burn, freeze, vanish, heal the others. And their kings.</span></p>
+    </div>
+    <div class="gallery">
+      <figure class="fig rv"><img src="assets/zombie-tower/z_normal_1.webp" alt="" loading="lazy"><figcaption><span class="es">Normal</span><span class="en">Normal</span><small class="es">Solo quiere llegar a la torre</small><small class="en">Just wants to reach the tower</small></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/z_pequena_1.webp" alt="" loading="lazy"><figcaption><span class="es">Pequeña</span><span class="en">Little one</span><small class="es">Rápida y escurridiza</small><small class="en">Fast and slippery</small></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/z_tanque.webp" alt="" loading="lazy"><figcaption><span class="es">Tanque</span><span class="en">Tank</span><small class="es">Aguanta de todo</small><small class="en">Takes everything</small></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/z_fuego.webp" alt="" loading="lazy"><figcaption><span class="es">Fuego</span><span class="en">Fire</span><small class="es">Quema lo que toca</small><small class="en">Burns what it touches</small></figcaption></figure>
+      <figure class="fig rv"><img src="assets/zombie-tower/z_hielo.webp" alt="" loading="lazy"><figcaption><span class="es">Hielo</span><span class="en">Ice</span><small class="es">Congela tus armas</small><small class="en">Freezes your weapons</small></figcaption></figure>
+      <figure class="fig boss rv"><img src="assets/zombie-tower/z_rey_fantasma.webp" alt="" loading="lazy"><figcaption><span class="es">Rey fantasma</span><span class="en">Ghost King</span><small class="es">Si no lo ves, no le atinas</small><small class="en">Can't see it, can't hit it</small></figcaption></figure>
+      <figure class="fig boss rv"><img src="assets/zombie-tower/z_rey_hiedra.webp" alt="" loading="lazy"><figcaption><span class="es">Reina hiedra</span><span class="en">Ivy Queen</span><small class="es">Señora del Pantano</small><small class="en">Lady of the Swamp</small></figcaption></figure>
+      <figure class="fig boss rv"><img src="assets/zombie-tower/z_nigromante.webp" alt="" loading="lazy"><figcaption><span class="es">Rey Nigromante</span><span class="en">Necromancer King</span><small class="es">El desafío final</small><small class="en">The final challenge</small></figcaption></figure>
+    </div>
+  </div>
+</section>
 
-<hr>
+<!-- ======================= MAP ======================= -->
+<section id="mapa" class="map">
+  <div class="wrap map-grid">
+    <div class="map-img rv"><img src="assets/zombie-tower/mapa.webp" alt="" loading="lazy"></div>
+    <div class="rv">
+      <div class="kicker" style="color: var(--ice);"><span class="es">Regiones</span><span class="en">Regions</span></div>
+      <h2 class="creepy"><span class="es">Un mundo por descubrir</span><span class="en">A world to discover</span></h2>
+      <p class="intro" style="margin-bottom: 0;">
+        <span class="es">Empieza en la Torre negra y abre camino al Pantano. Cada región tiene sus zombis, sus guardianes y sus propias reglas. Y aún quedan tierras en el mapa.</span>
+        <span class="en">Start at the Black Tower and make your way to the Swamp. Each region has its own zombies, guardians and rules. And there are still lands left on the map.</span>
+      </p>
+      <div class="diffs">
+        <div class="diff" style="--d: var(--green);"><div><span class="es">Novato</span><span class="en">Novice</span><small class="es">Para aprender</small><small class="en">To learn</small></div></div>
+        <div class="diff" style="--d: var(--ice);"><div><span class="es">Explorador</span><span class="en">Explorer</span><small class="es">Para disfrutar</small><small class="en">To enjoy</small></div></div>
+        <div class="diff" style="--d: var(--fire);"><div><span class="es">Veterano</span><span class="en">Veteran</span><small class="es">Para sufrir</small><small class="en">To suffer</small></div></div>
+        <div class="diff" style="--d: var(--blood);"><div><span class="es">Pesadilla</span><span class="en">Nightmare</span><small class="es">Para presumir</small><small class="en">To brag</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h1>The Zombie Tower (English)</h1>
-<p class="meta">A game by Nixinumbra · Contact: nixinumbra13.co@gmail.com</p>
+<!-- ======================= SWAMP ======================= -->
+<section class="swamp">
+  <div class="wrap rv">
+    <img class="queen" src="assets/zombie-tower/z_rey_hiedra.webp" alt="" loading="lazy">
+    <div class="kicker" style="color: #9ff0b0;"><span class="es">Nueva región</span><span class="en">New region</span></div>
+    <h2 class="creepy"><span class="es">El Pantano</span><span class="en">The Swamp</span></h2>
+    <p class="intro"><span class="es">Niebla, fantasmas, enredaderas que brotan del agua y una reina que no perdona. ¿Te atreves a cruzar el puente?</span>
+       <span class="en">Fog, ghosts, vines sprouting from the water and a queen who shows no mercy. Dare to cross the bridge?</span></p>
+  </div>
+</section>
 
-<h2>What is The Zombie Tower?</h2>
-<p><strong>The Zombie Tower</strong> is a tower-defense game for Android: place
-weapons and towers to defend an ancient tower from endless waves of zombies.
-Unlock weapons, technologies and permanent upgrades, defeat the zombie kings,
-discover secret achievements and collectibles, and face the Necromancer King's
-final challenge across four difficulties.</p>
+<!-- ======================= FINAL CTA ======================= -->
+<section class="final">
+  <div class="wrap rv">
+    <h2 class="creepy"><span class="es">¿Podrás defender la torre?</span><span class="en">Can you hold the tower?</span></h2>
+    <p class="intro"><span class="es">Es gratis. Se juega sin conexión. Y los zombis no van a esperar.</span>
+       <span class="en">It's free. It plays offline. And the zombies won't wait.</span></p>
+    <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.nixinumbra.thezombietower" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1a0d00" d="M4 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 4 3.5z"/></svg>
+      <span>
+        <small class="es">Gratis en Google Play</small><small class="en">Free on Google Play</small>
+        <span class="es">Descarga el juego</span>
+        <span class="en">Download the game</span>
+      </span>
+    </a>
+    <p class="mini"><span class="es">Android · Incluye anuncios y compras opcionales dentro del juego.</span>
+       <span class="en">Android · Contains ads and optional in-app purchases.</span></p>
+  </div>
+</section>
 
-<p>The game is fully playable offline, shows no ads, and collects no data for the
-developer. Its only online feature is the optional Google Play Games integration
-for achievements.</p>
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="foot">
+    <div class="brand">
+      <img src="assets/zombie-tower/nixinumbra_logo.webp" alt="Nixinumbra">
+      <div><strong>NIXINUMBRA</strong><span>Games that connect worlds</span></div>
+    </div>
+    <nav class="links">
+      <a href="the-zombie-tower-privacy-policy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
+      <a href="mailto:nixinumbra13.co@gmail.com"><span class="es">Contacto</span><span class="en">Contact</span></a>
+      <a href="index.html"><span class="es">Más apps</span><span class="en">More apps</span></a>
+    </nav>
+    <p class="copy">© 2026 Nixinumbra · The Zombie Tower. <span class="es">Google Play es una marca de Google LLC.</span><span class="en">Google Play is a trademark of Google LLC.</span></p>
+  </div>
+</footer>
 
-<h2>Privacy</h2>
-<p>See <a href="the-zombie-tower-privacy-policy.html">The Zombie Tower Privacy Policy</a>.</p>
+<script>
+  (function () {
+    var html = document.documentElement;
+    function setLang(l) {
+      html.setAttribute('data-lang', l);
+      html.setAttribute('lang', l);
+      document.title = l === 'es'
+        ? 'The Zombie Tower — Defiende la torre. Descarga gratis.'
+        : 'The Zombie Tower — Defend the tower. Download for free.';
+      try { localStorage.setItem('tzt-lang', l); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('tzt-lang'); } catch (e) {}
+    var fromUrl = /[?&]lang=(es|en)/.exec(location.search);
+    var nav = (navigator.language || 'es').toLowerCase();
+    setLang(fromUrl ? fromUrl[1] : (saved || (nav.indexOf('es') === 0 ? 'es' : 'en')));
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-set')); });
+    });
 
-<h2>Contact</h2>
-<p>Questions or feedback: <a href="mailto:nixinumbra13.co@gmail.com">nixinumbra13.co@gmail.com</a></p>
-
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+    }
+  })();
+</script>
 </body>
 </html>
