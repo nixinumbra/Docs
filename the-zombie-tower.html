@@ -101,7 +101,7 @@
   }
   .hero-inner { max-width: 760px; width: 100%; position: relative; z-index: 1; }
   .hero-logo {
-    width: min(520px, 86vw); margin: 0 auto 10px;
+    width: min(312px, 52vw); margin: 0 auto 10px;
     filter: drop-shadow(0 0 28px rgba(255,120,0,.55)) drop-shadow(0 18px 24px rgba(0,0,0,.7));
     animation: glow 3s ease-in-out infinite alternate;
   }
@@ -173,6 +173,22 @@
   .fig.boss { border-color: rgba(255,138,31,.45); background: radial-gradient(120% 80% at 50% 0%, rgba(255,122,0,.14), transparent 60%), var(--bg2); }
   .fig.boss figcaption { color: var(--ember); }
 
+  /* tower = base + weapon mounted as in the game (weapon 0.7 of the body, pivot at the center) */
+  .tower { position: relative; width: 150px; height: 150px; margin: 0 auto 10px; filter: drop-shadow(0 12px 16px rgba(0,0,0,.7)); }
+  .card .tower { margin-bottom: 18px; }
+  .tower img { margin: 0; filter: none; }
+  .tower .base { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .tower .arma { position: absolute; width: 70%; height: auto; left: calc(50% + var(--dx, 0) * 111%); top: calc(50% + var(--dy, 0) * 111%); transform: translateY(-50%); }
+  .fig .tower img, .card .tower img { margin: 0; filter: none; }
+  .fig .tower .base, .card .tower .base { height: 100%; }
+  .fig .tower .arma, .card .tower .arma { height: auto; }
+  .enemies .gallery { grid-template-columns: repeat(5, 1fr); }
+  @media (max-width: 720px) { .enemies .gallery { grid-template-columns: repeat(2, 1fr); } .tower { width: 140px; height: 140px; } }
+  .social { display: flex; gap: 12px; align-items: center; }
+  .social a { display: inline-flex; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--bg2); color: var(--text); transition: border-color .2s, transform .2s; }
+  .social a:hover { border-color: var(--fire); color: var(--fire); transform: translateY(-2px); }
+  .social svg { width: 20px; height: 20px; fill: currentColor; }
+
   /* map */
   .map { background: radial-gradient(80% 60% at 50% 0%, rgba(127,208,255,.08), transparent 70%), var(--bg); }
   .map-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
@@ -196,7 +212,7 @@
   /* final cta */
   .final {
     position: relative; isolation: isolate; text-align: center; padding: 140px 16px;
-    background: url("assets/zombie-tower/cine_reynigromantecaido.webp") center / cover no-repeat;
+    background: url("assets/zombie-tower/cine_torrecaida.webp") center / cover no-repeat;
   }
   .final::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,10,16,.9), rgba(40,5,5,.55) 50%, rgba(11,10,16,.95)); }
   .final h2.creepy { font-size: clamp(2.6rem, 7vw, 4.6rem); color: #fff; text-shadow: 0 4px 0 #000, 0 0 40px rgba(255,60,30,.7); }
@@ -267,10 +283,10 @@
     </div>
     <div class="cards">
       <article class="card rv">
-        <img src="assets/zombie-tower/a_nuclear_1_torre_fuego.webp" alt="" loading="lazy">
+        <div class="tower"><img class="base" src="assets/zombie-tower/a_canon_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_canon_1_arma.webp" alt="" loading="lazy" style="--dx: -0.01; --dy: 0;"></div>
         <h3><span class="es">Arma la defensa</span><span class="en">Build the defense</span></h3>
-        <p><span class="es">Cañones, láseres, hielo, electricidad, un reactor nuclear y hasta un dragón. Elige dónde ponerlos y cuándo mejorarlos.</span>
-           <span class="en">Cannons, lasers, ice, lightning, a nuclear reactor and even a dragon. Choose where to place them and when to upgrade.</span></p>
+        <p><span class="es">Ballestas, cañones, hielo, electricidad, láseres y misiles. Elige dónde ponerlos y cuándo mejorarlos.</span>
+           <span class="en">Ballistas, cannons, ice, lightning, lasers and missiles. Choose where to place them and when to upgrade.</span></p>
       </article>
       <article class="card rv">
         <img src="assets/zombie-tower/z_rey_nomuerto.webp" alt="" loading="lazy">
@@ -279,7 +295,7 @@
            <span class="en">Every kind of zombie has its king, and every king has a trick. The Necromancer King waits at the end.</span></p>
       </article>
       <article class="card rv">
-        <img src="assets/zombie-tower/el_dragon.webp" alt="" loading="lazy">
+        <img src="assets/zombie-tower/regalo_cofre_purpura.webp" alt="" loading="lazy">
         <h3><span class="es">Progresa para siempre</span><span class="en">Progress forever</span></h3>
         <p><span class="es">Tecnologías, mejoras permanentes, gemas, logros y coleccionables secretos. Cada partida te deja algo.</span>
            <span class="en">Technologies, permanent upgrades, gems, achievements and secret collectibles. Every run leaves you something.</span></p>
@@ -304,14 +320,14 @@
          <span class="en">Combine weapons and towers: some slow, some burn, some reach the ones that fly.</span></p>
     </div>
     <div class="gallery">
-      <figure class="fig rv"><img src="assets/zombie-tower/a_canon_1.webp" alt="" loading="lazy"><figcaption><span class="es">Cañón</span><span class="en">Cannon</span></figcaption></figure>
-      <figure class="fig rv"><img src="assets/zombie-tower/a_hielo_1.webp" alt="" loading="lazy"><figcaption><span class="es">Hielo</span><span class="en">Ice</span></figcaption></figure>
+      <figure class="fig rv"><div class="tower"><img class="base" src="assets/zombie-tower/a_ballesta_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_ballesta_1_arma.webp" alt="" loading="lazy"></div><figcaption><span class="es">Ballesta</span><span class="en">Ballista</span></figcaption></figure>
+      <figure class="fig rv"><div class="tower"><img class="base" src="assets/zombie-tower/a_canon_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_canon_1_arma.webp" alt="" loading="lazy" style="--dx: -0.01; --dy: 0;"></div><figcaption><span class="es">Cañón</span><span class="en">Cannon</span></figcaption></figure>
+      <figure class="fig rv"><div class="tower"><img class="base" src="assets/zombie-tower/a_hielo_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_hielo_1_arma.webp" alt="" loading="lazy" style="--dx: 0; --dy: -0.05;"></div><figcaption><span class="es">Hielo</span><span class="en">Ice</span></figcaption></figure>
       <figure class="fig rv"><img src="assets/zombie-tower/a_electrico_1.webp" alt="" loading="lazy"><figcaption><span class="es">Eléctrica</span><span class="en">Electric</span></figcaption></figure>
-      <figure class="fig rv"><img src="assets/zombie-tower/a_laser_1.webp" alt="" loading="lazy"><figcaption><span class="es">Láser</span><span class="en">Laser</span></figcaption></figure>
+      <figure class="fig rv"><div class="tower"><img class="base" src="assets/zombie-tower/a_laser_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_laser_1_arma.webp" alt="" loading="lazy" style="--dx: -0.05; --dy: -0.1;"></div><figcaption><span class="es">Láser</span><span class="en">Laser</span></figcaption></figure>
       <figure class="fig rv"><img src="assets/zombie-tower/a_misiles_1.webp" alt="" loading="lazy"><figcaption><span class="es">Misiles</span><span class="en">Missiles</span></figcaption></figure>
-      <figure class="fig rv"><img src="assets/zombie-tower/a_nuclear_1_torre_fuego.webp" alt="" loading="lazy"><figcaption><span class="es">Nuclear</span><span class="en">Nuclear</span></figcaption></figure>
+      <figure class="fig rv"><div class="tower"><img class="base" src="assets/zombie-tower/a_soplete_1.webp" alt="" loading="lazy"><img class="arma" src="assets/zombie-tower/a_soplete_1_arma.webp" alt="" loading="lazy"></div><figcaption><span class="es">Lanzallamas</span><span class="en">Flamethrower</span></figcaption></figure>
       <figure class="fig rv"><img src="assets/zombie-tower/a_dama_1.webp" alt="" loading="lazy"><figcaption><span class="es">La Dama</span><span class="en">The Lady</span></figcaption></figure>
-      <figure class="fig rv"><img src="assets/zombie-tower/el_dragon.webp" alt="" loading="lazy"><figcaption><span class="es">El Dragón</span><span class="en">The Dragon</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -332,6 +348,8 @@
       <figure class="fig rv"><img src="assets/zombie-tower/z_fuego.webp" alt="" loading="lazy"><figcaption><span class="es">Fuego</span><span class="en">Fire</span><small class="es">Quema lo que toca</small><small class="en">Burns what it touches</small></figcaption></figure>
       <figure class="fig rv"><img src="assets/zombie-tower/z_hielo.webp" alt="" loading="lazy"><figcaption><span class="es">Hielo</span><span class="en">Ice</span><small class="es">Congela tus armas</small><small class="en">Freezes your weapons</small></figcaption></figure>
       <figure class="fig boss rv"><img src="assets/zombie-tower/z_rey_fantasma.webp" alt="" loading="lazy"><figcaption><span class="es">Rey fantasma</span><span class="en">Ghost King</span><small class="es">Si no lo ves, no le atinas</small><small class="en">Can't see it, can't hit it</small></figcaption></figure>
+      <figure class="fig boss rv"><img src="assets/zombie-tower/z_rey_acolitosupremo.webp" alt="" loading="lazy"><figcaption><span class="es">Acólito supremo</span><span class="en">Supreme Acolyte</span><small class="es">Lord de la Torre negra</small><small class="en">Lord of the Black Tower</small></figcaption></figure>
+      <figure class="fig boss rv"><img src="assets/zombie-tower/z_lord_pantano.webp" alt="" loading="lazy"><figcaption><span class="es">Señor del pantano</span><span class="en">Swamp Lord</span><small class="es">Vuelve fantasma a tus torres</small><small class="en">Turns your towers into ghosts</small></figcaption></figure>
       <figure class="fig boss rv"><img src="assets/zombie-tower/z_rey_hiedra.webp" alt="" loading="lazy"><figcaption><span class="es">Reina hiedra</span><span class="en">Ivy Queen</span><small class="es">Señora del Pantano</small><small class="en">Lady of the Swamp</small></figcaption></figure>
       <figure class="fig boss rv"><img src="assets/zombie-tower/z_nigromante.webp" alt="" loading="lazy"><figcaption><span class="es">Rey Nigromante</span><span class="en">Necromancer King</span><small class="es">El desafío final</small><small class="en">The final challenge</small></figcaption></figure>
     </div>
@@ -401,6 +419,11 @@
       <a href="mailto:nixinumbra13.co@gmail.com"><span class="es">Contacto</span><span class="en">Contact</span></a>
       <a href="index.html"><span class="es">Más apps</span><span class="en">More apps</span></a>
     </nav>
+    <div class="social" aria-label="Redes sociales">
+      <a href="https://www.facebook.com/61594770226848/" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a>
+      <a href="https://www.tiktok.com/@nixinumbra" target="_blank" rel="noopener" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.3 1.6 3.7 3.9 3.9v3.2c-1.4 0-2.7-.4-3.9-1.2v6.3c0 4-2.9 6.1-5.9 6.1-3.1 0-5.6-2.5-5.6-5.6 0-3.6 3.4-6.3 6.9-5.4v3.3c-1.9-.6-3.7.7-3.7 2.1 0 1.3 1.1 2.4 2.4 2.4 1.5 0 2.6-1.1 2.6-2.9V2h3.3z"/></svg></a>
+      <a href="https://www.youtube.com/@Nixinumbra" target="_blank" rel="noopener" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 7.2c-.2-1-1-1.7-2-1.9C18.8 5 12 5 12 5s-6.8 0-8.5.3c-1 .2-1.8.9-2 1.9C1.2 8.9 1.2 12 1.2 12s0 3.1.3 4.8c.2 1 1 1.7 2 1.9 1.7.3 8.5.3 8.5.3s6.8 0 8.5-.3c1-.2 1.8-.9 2-1.9.3-1.7.3-4.8.3-4.8s0-3.1-.3-4.8zM9.8 15.1V8.9l5.6 3.1-5.6 3.1z"/></svg></a>
+    </div>
     <p class="copy">© 2026 Nixinumbra · The Zombie Tower. <span class="es">Google Play es una marca de Google LLC.</span><span class="en">Google Play is a trademark of Google LLC.</span></p>
   </div>
 </footer>
