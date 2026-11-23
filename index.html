@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nixinumbra — Games that connect worlds</title>
-<meta name="description" content="Nixinumbra: juegos y apps para Android. The Zombie Tower e IAdentity Premium. Descárgalos en Google Play.">
+<meta name="description" content="Nixinumbra: juegos y apps para Android. The Zombie Tower, IAdentity Premium y Mosaico. Descárgalos en Google Play.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nixinumbra — Games that connect worlds">
-<meta property="og:description" content="Juegos y apps para Android: The Zombie Tower e IAdentity Premium.">
+<meta property="og:description" content="Juegos y apps para Android: The Zombie Tower, IAdentity Premium y Mosaico.">
 <meta property="og:image" content="https://nixinumbra.github.io/Docs/assets/nixinumbra_logo.webp">
 <meta property="og:url" content="https://nixinumbra.github.io/Docs/">
 <meta name="theme-color" content="#070609">
@@ -19,7 +19,7 @@
   :root {
     --bg: #070609; --bg2: #110f17; --panel: #171420; --line: #2a2535;
     --text: #f1ece4; --muted: #b3aba0;
-    --moon: #e9e4d6; --sky: #4f7ad8; --fire: #ff8a1f; --ember: #ffb347; --violet: #8b6cff; --pink: #ff6ad5;
+    --moon: #e9e4d6; --sky: #4f7ad8; --fire: #ff8a1f; --ember: #ffb347; --violet: #8b6cff; --pink: #ff6ad5; --teal: #2ec4b6;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -69,6 +69,7 @@
   .app::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 80% at 0% 50%, var(--glow), transparent 70%); opacity: .9; }
   .app.zt { --accent: var(--fire); --glow: rgba(255,122,0,.18); }
   .app.ia { --accent: var(--violet); --glow: rgba(139,108,255,.22); }
+  .app.mo { --accent: var(--teal); --glow: rgba(46,196,182,.2); }
   .art { display: grid; place-items: center; }
   .art img { width: 100%; max-width: 280px; border-radius: 28px; box-shadow: 0 24px 40px rgba(0,0,0,.7); transition: transform .3s ease; }
   .app:hover .art img { transform: scale(1.04) rotate(-1.5deg); }
@@ -83,6 +84,7 @@
   .btn svg { width: 22px; height: 22px; flex: none; }
   .btn.play { background: linear-gradient(180deg, #ffa033 0%, #ff7a00 55%, #e85d00 100%); color: #1a0d00; box-shadow: 0 10px 30px rgba(255,122,0,.35); }
   .app.ia .btn.play { background: linear-gradient(180deg, #a98cff 0%, #7d5cff 55%, #5e3fe0 100%); color: #0d0820; box-shadow: 0 10px 30px rgba(139,108,255,.4); }
+  .app.mo .btn.play { background: linear-gradient(180deg, #5fe0d3 0%, #2ec4b6 55%, #1b7f78 100%); color: #03201d; box-shadow: 0 10px 30px rgba(46,196,182,.35); }
   .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
   .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
   .lnk { color: var(--muted); font-weight: 700; font-size: .9rem; text-decoration: none; }
@@ -177,6 +179,28 @@
             </a>
             <a class="btn ghost" href="iadentity-premium.html"><span class="es">Ver la app</span><span class="en">See the app</span></a>
             <a class="lnk" href="privacy-policy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="app mo rv">
+        <div class="art"><img src="assets/mosaico/icon.webp" alt="Mosaico"></div>
+        <div>
+          <span class="tag"><span class="es">App · Android TV</span><span class="en">App · Android TV</span></span>
+          <h2>Mosaico</h2>
+          <p><span class="es">Ve en tu televisor los videos que ya tienes en tu nube o tu servidor, junto con tus links favoritos, ordenados en tu propia biblioteca por tipo, género y perfil. El teléfono es tu acompañante para conectar y compartir.</span>
+             <span class="en">Watch on your TV the videos you already keep in your cloud or server, along with your favorite links, organized in your own library by type, genre and profile. Your phone is the companion to connect and share.</span></p>
+          <div class="chips">
+            <span class="chip es">☁️ OneDrive, Google Drive y Dropbox</span><span class="chip en">☁️ OneDrive, Google Drive and Dropbox</span>
+            <span class="chip es">👨‍👩‍👧 Perfiles y modo Kids</span><span class="chip en">👨‍👩‍👧 Profiles and Kids mode</span>
+            <span class="chip es">🚫 Sin anuncios</span><span class="chip en">🚫 No ads</span>
+          </div>
+          <div class="actions">
+            <a class="btn play" href="https://play.google.com/store/apps/details?id=com.nixinumbra.mosaico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 4 3.5z"/></svg>
+              <span class="es">Descargar en Google Play</span><span class="en">Get it on Google Play</span>
+            </a>
+            <a class="lnk" href="mosaico-privacy-policy.html"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
           </div>
         </div>
       </article>

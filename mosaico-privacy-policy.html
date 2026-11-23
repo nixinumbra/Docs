@@ -15,22 +15,24 @@
 <body>
 
 <h1>Política de Privacidad de Mosaico</h1>
-<p class="meta">Desarrollador: Nixinumbra · Vigente desde: 29 de octubre de 2026 ·
+<p class="meta">Desarrollador: Nixinumbra · Vigente desde: 23 de noviembre de 2026 ·
 Contacto: nixinumbra13.co@gmail.com</p>
 
 <p><strong>Resumen: Mosaico te deja ver en tu televisor los videos que ya tienes en tu
-OneDrive o tu Google Drive, junto con links de YouTube y Dailymotion, organizados en
-carpetas. El desarrollador no tiene servidores propios ni recibe tus datos: la app se
-conecta directamente a tu nube con el permiso que tú le das, y tus carpetas se guardan en
-tu dispositivo y en una carpeta privada de la app dentro de tu propia nube.</strong></p>
+OneDrive, Google Drive o Dropbox, o en tu propio servidor (WebDAV o carpeta compartida de
+red), junto con links de YouTube y otros sitios de video, organizados en tu biblioteca. El
+desarrollador no tiene servidores propios ni recibe tus datos: la app se conecta
+directamente a tu nube o servidor con el permiso que tú le das, y tu biblioteca se guarda
+en tu dispositivo y en una carpeta privada de la app dentro de tu propia nube.</strong></p>
 
 <h2>1. Qué es Mosaico</h2>
 <p>Mosaico es una app para Android TV y Google TV que reproduce los videos guardados en tu
-nube y los links de video que compartes desde tu teléfono, y te permite agruparlos en
-carpetas. En el teléfono funciona como acompañante: para iniciar sesión, organizar
-carpetas y enviar videos con "Compartir". Es un proyecto desarrollado por Nixinumbra.</p>
+nube o tu servidor y los links de video que compartes desde tu teléfono, y te permite
+organizarlos en una biblioteca por tipo, género y perfil. En el teléfono funciona como
+acompañante: para iniciar sesión, organizar tu biblioteca y enviar videos con "Compartir".
+Es un proyecto desarrollado por Nixinumbra.</p>
 
-<h2>2. Cuentas de nube que puedes conectar</h2>
+<h2>2. Nubes y servidores que puedes conectar</h2>
 <ul>
   <li><strong>Microsoft OneDrive:</strong> inicias sesión en la página oficial de
   Microsoft (con un código o un código QR desde tu teléfono). Mosaico pide permiso
@@ -42,14 +44,21 @@ carpetas y enviar videos con "Compartir". Es un proyecto desarrollado por Nixinu
   para verlos y en el teléfono para agregarlos a tus carpetas) y acceso a su carpeta privada
   de app para sincronizar tus carpetas. El correo de la cuenta se guarda en el dispositivo para
   recordar qué cuenta usar.</li>
+  <li><strong>Dropbox:</strong> inicias sesión en la página oficial de Dropbox. Mosaico pide
+  permiso para leer tus archivos y mostrarte tus videos; no escribe nada en tu Dropbox.</li>
+  <li><strong>Servidor WebDAV o carpeta compartida de red (SMB):</strong> escribes la dirección
+  del servidor y, si lo pide, su usuario y contraseña. Mosaico se conecta directamente a ese
+  servidor, en tu red o en internet, solo para leer tus videos.</li>
   <li><strong>Recuperar la contraseña del perfil principal:</strong> si la olvidas, Mosaico te
   pide iniciar sesión en otro equipo con la cuenta de nube conectada. Solo lee el correo de
   esa cuenta para comprobar que es la misma; no guarda nada de ese inicio de sesión.</li>
 </ul>
-<p>Mosaico solo lee la lista de tus carpetas y videos, sus miniaturas y el contenido
-del video que eliges reproducir. Nunca modifica ni borra tus archivos, y nada de esto
-pasa por servidores del desarrollador: viaja directamente entre tu dispositivo y
-Microsoft o Google.</p>
+<p>Mosaico solo lee la lista de tus carpetas y videos, sus miniaturas, sus subtítulos y el
+contenido del video que eliges reproducir. Nunca modifica ni borra tus archivos, y nada de
+esto pasa por servidores del desarrollador: viaja directamente entre tu dispositivo y el
+servicio o servidor correspondiente. Si eliges abrir un video con otra app de tu
+dispositivo, Mosaico le entrega a esa app un enlace temporal al video, y esa app se rige
+por su propia política de privacidad.</p>
 
 <h2>3. Uso limitado de datos de Google</h2>
 <p>El uso y la transferencia que Mosaico hace de la información recibida de las APIs de
@@ -65,41 +74,53 @@ usan para publicidad ni se comparten con terceros, y ninguna persona los lee.</p
   <li><strong>Tu biblioteca:</strong> por cada video o serie que agregas, su nombre, su
   tipo (película, serie, caricatura…), sus géneros, qué perfiles lo ven, su duración y el
   identificador del archivo o carpeta en tu nube o el link del video con su miniatura.</li>
-  <li><strong>Inicio de sesión:</strong> los permisos de acceso a Microsoft se guardan
-  cifrados con una llave protegida por el sistema Android; los de Google los
-  administra Google Play services. No se incluyen en las copias de seguridad del
+  <li><strong>Inicio de sesión:</strong> los permisos de acceso a Microsoft y a Dropbox, y
+  el usuario y la contraseña de tus servidores WebDAV o SMB, se guardan cifrados con una
+  llave protegida por el sistema Android; los de Google los administra Google Play
+  services. No se incluyen en las copias de seguridad del
   dispositivo.</li>
-  <li><strong>Progreso:</strong> en qué punto te quedaste de cada video de tu nube, por perfil,
-  para ofrecerte continuar donde ibas.</li>
+  <li><strong>Progreso y listas:</strong> en qué punto te quedaste de cada video, por perfil,
+  para ofrecerte continuar donde ibas; además "Mi lista", los pendientes y las
+  calificaciones que cada perfil da a lo que ve.</li>
+  <li><strong>Imágenes:</strong> los cuadros que Mosaico toma de tus propios videos para
+  usarlos como miniaturas y, si eliges uno, el logo que pones sobre los videos. Mientras ves
+  un video, una parte se guarda de forma temporal para que se reproduzca sin cortes, y se
+  borra después.</li>
   <li><strong>Perfiles:</strong> el nombre, el avatar elegido y si es un perfil para
   niños. Si le pones contraseña a un perfil, no se guarda la contraseña sino una huella
-  cifrada de ella (hash con sal) que sirve para comprobarla. Cada cuenta de nube queda
+  cifrada de ella (hash con sal) que sirve para comprobarla; lo mismo con el PIN o la
+  contraseña que protege la app. Cada cuenta de nube queda
   asociada al perfil que la conectó, que decide si la comparte con los demás perfiles.</li>
   <li><strong>Preferencias:</strong> idioma, la nube elegida para sincronizar y demás
   ajustes.</li>
 </ul>
 <p>Al desinstalar la app, todo esto se elimina del dispositivo.</p>
 
-<h2>5. Sincronización de tus carpetas</h2>
-<p>Para que tus carpetas aparezcan igual en el televisor y en el teléfono, Mosaico guarda
-una copia de ellas y de tus perfiles (los mismos datos de la sección 4, sin tus
-inicios de sesión ni el perfil elegido en cada equipo) en un
+<h2>5. Sincronización de tu biblioteca</h2>
+<p>Para que tu biblioteca aparezca igual en el televisor y en el teléfono, Mosaico guarda
+una copia de ella, de tus perfiles, tu progreso y tus listas (los datos de la sección 4,
+sin tus inicios de sesión, las imágenes ni el perfil elegido en cada equipo) en un
 archivo dentro de la carpeta privada de la app en tu OneDrive o tu Google Drive. Esa
 carpeta pertenece a tu cuenta; el desarrollador no tiene acceso a ella.</p>
 
 <h2>6. Links de video</h2>
 <p>Cuando compartes un link, Mosaico consulta a YouTube o a Dailymotion el título y la
-miniatura del video; si es de otro sitio (por ejemplo Facebook o X), lee la vista previa
-pública de esa página. Los links de otros sitios se abren en la app o el navegador que
+miniatura del video; si es de otro sitio (por ejemplo Vimeo, TikTok, Facebook, Instagram o
+X), lee la vista previa pública de esa página. Los links de otros sitios se abren en la app o el navegador que
 los maneje, o dentro de Mosaico, y se rigen por la política de privacidad de ese sitio. Al reproducirlo, se abre la app oficial de la plataforma o su
 reproductor integrado, y esa reproducción se rige por las políticas de privacidad de
 <a href="https://policies.google.com/privacy">Google (YouTube)</a> o de
-<a href="https://legal.dailymotion.com/en/privacy-policy/">Dailymotion</a>.</p>
+<a href="https://legal.dailymotion.com/en/privacy-policy/">Dailymotion</a>, o del sitio
+al que pertenezca el video.</p>
 
-<h2>7. Permisos que usa la app y para qué</h2>
+<h2>7. Compras y permisos que usa la app</h2>
 <ul>
-  <li><strong>Internet:</strong> para conectarse a tu nube, reproducir videos,
-  consultar los datos de los links y sincronizar tus carpetas.</li>
+  <li><strong>Internet y estado de la red:</strong> para conectarse a tu nube o tu
+  servidor, reproducir videos, consultar los datos de los links y sincronizar tu
+  biblioteca.</li>
+  <li><strong>Compra de Premium:</strong> la compra única que quita los límites de la
+  versión gratuita la procesa Google Play. Mosaico no recibe ni guarda tus datos de pago:
+  solo le pregunta a Google Play si tu cuenta ya tiene Premium.</li>
   <li><strong>Red local y biométricos (opcional):</strong> si vinculas tu celular para
   abrir un perfil de la TV con tu huella o tu rostro, la TV y el celular se comunican
   directamente por tu Wi-Fi. Tu huella o tu rostro los comprueba Android en el celular:
@@ -110,7 +131,8 @@ reproductor integrado, y esa reproducción se rige por las políticas de privaci
 <h2>8. Datos que NO se recolectan</h2>
 <p>Mosaico no recolecta datos personales para el desarrollador: sin cuentas propias,
 sin ubicación, sin contactos, sin analíticas, sin publicidad y sin telemetría. Los
-únicos terceros que intervienen son Microsoft, Google, YouTube y Dailymotion, para las
+únicos terceros que intervienen son Microsoft, Google (incluidos Google Play y YouTube),
+Dropbox, los servidores que tú conectes y los sitios de los links que compartes, para las
 funciones descritas arriba.</p>
 
 <h2>9. Menores de edad</h2>
@@ -120,11 +142,12 @@ familiares.</p>
 
 <h2>10. Tus derechos y cómo eliminar tus datos</h2>
 <ul>
-  <li>Puedes cerrar sesión de cada nube desde la app; eso borra del dispositivo sus
-  permisos de acceso.</li>
+  <li>Puedes cerrar sesión de cada nube o quitar cada servidor desde la app; eso borra
+  del dispositivo sus permisos de acceso o su usuario y contraseña.</li>
   <li>Puedes retirar el acceso de Mosaico en cualquier momento desde
   <a href="https://myaccount.google.com/permissions">tu cuenta de Google</a> o desde
-  <a href="https://account.live.com/consent/Manage">tu cuenta de Microsoft</a>.</li>
+  <a href="https://account.live.com/consent/Manage">tu cuenta de Microsoft</a> o
+  <a href="https://www.dropbox.com/account/connected_apps">tu cuenta de Dropbox</a>.</li>
   <li>Los datos del dispositivo se eliminan al desinstalar la app. La copia
   sincronizada se puede borrar desde la configuración de apps conectadas de tu
   Google Drive o eliminando la carpeta de Mosaico dentro de "Aplicaciones" en tu
@@ -142,22 +165,24 @@ con su nueva fecha de vigencia.</p>
 <hr>
 
 <h1>Mosaico Privacy Policy (English)</h1>
-<p class="meta">Developer: Nixinumbra · Effective date: October 29, 2026 ·
+<p class="meta">Developer: Nixinumbra · Effective date: November 23, 2026 ·
 Contact: nixinumbra13.co@gmail.com</p>
 
 <p><strong>Summary: Mosaico lets you watch on your TV the videos you already keep in your
-OneDrive or Google Drive, along with YouTube and Dailymotion links, organized in folders.
+OneDrive, Google Drive or Dropbox, or on your own server (WebDAV or network shared
+folder), along with links from YouTube and other video sites, organized in your library.
 The developer has no servers of its own and receives none of your data: the app connects
-directly to your cloud with the permission you grant it, and your folders are stored on
-your device and in a private app folder inside your own cloud.</strong></p>
+directly to your cloud or server with the permission you grant it, and your library is
+stored on your device and in a private app folder inside your own cloud.</strong></p>
 
 <h2>1. What Mosaico is</h2>
 <p>Mosaico is an app for Android TV and Google TV that plays the videos stored in your
-cloud and the video links you share from your phone, and lets you group them into
-folders. On the phone it works as a companion: to sign in, organize folders and send
-videos with "Share". It is a project developed by Nixinumbra.</p>
+cloud or server and the video links you share from your phone, and lets you organize them
+in a library by type, genre and profile. On the phone it works as a companion: to sign
+in, organize your library and send videos with "Share". It is a project developed by
+Nixinumbra.</p>
 
-<h2>2. Cloud accounts you can connect</h2>
+<h2>2. Clouds and servers you can connect</h2>
 <ul>
   <li><strong>Microsoft OneDrive:</strong> you sign in on Microsoft's official page
   (with a code or a QR code from your phone). Mosaico asks for permission to read your
@@ -168,14 +193,22 @@ videos with "Share". It is a project developed by Nixinumbra.</p>
   and on the phone to add them to your folders) and for access to its private app folder to
   sync your folders. The
   account's email is stored on the device to remember which account to use.</li>
+  <li><strong>Dropbox:</strong> you sign in on Dropbox's official page. Mosaico asks for
+  permission to read your files to show you your videos; it writes nothing to your
+  Dropbox.</li>
+  <li><strong>WebDAV server or network shared folder (SMB):</strong> you enter the server's
+  address and, if it requires them, its username and password. Mosaico connects directly to
+  that server, on your network or on the internet, only to read your videos.</li>
   <li><strong>Recovering the main profile's password:</strong> if you forget it, Mosaico asks
   you to sign in on another device with the connected cloud account. It only reads that
   account's email to check it is the same one; nothing from that sign-in is stored.</li>
 </ul>
-<p>Mosaico only reads the list of your folders and videos, their thumbnails, and the
-content of the video you choose to play. It never modifies or deletes your files, and
-none of this goes through the developer's servers: it travels directly between your
-device and Microsoft or Google.</p>
+<p>Mosaico only reads the list of your folders and videos, their thumbnails, their
+subtitles, and the content of the video you choose to play. It never modifies or deletes
+your files, and none of this goes through the developer's servers: it travels directly
+between your device and the corresponding service or server. If you choose to open a
+video with another app on your device, Mosaico hands that app a temporary link to the
+video, and that app is governed by its own privacy policy.</p>
 
 <h2>3. Limited use of Google data</h2>
 <p>Mosaico's use and transfer of information received from Google APIs adheres to the
@@ -190,40 +223,51 @@ human.</p>
   <li><strong>Your library:</strong> for each video or series you add, its name, its
   type (movie, series, cartoon…), its genres, which profiles can see it, its duration, and
   the identifier of the file or folder in your cloud or the video link with its thumbnail.</li>
-  <li><strong>Sign-in:</strong> Microsoft access permissions are stored encrypted with
-  a key protected by the Android system; Google's are managed by Google Play services.
+  <li><strong>Sign-in:</strong> Microsoft and Dropbox access permissions, and the
+  username and password of your WebDAV or SMB servers, are stored encrypted with a key
+  protected by the Android system; Google's are managed by Google Play services.
   They are excluded from device backups.</li>
-  <li><strong>Progress:</strong> where you stopped in each video from your cloud, per profile,
-  so you can continue where you left off.</li>
+  <li><strong>Progress and lists:</strong> where you stopped in each video, per profile, so
+  you can continue where you left off; plus "My list", the to-watch items and the ratings
+  each profile gives to what it watches.</li>
+  <li><strong>Images:</strong> the frames Mosaico takes from your own videos to use as
+  thumbnails and, if you choose one, the logo you place over the videos. While you watch a
+  video, part of it is stored temporarily so it plays without interruptions, and it is
+  deleted afterwards.</li>
   <li><strong>Profiles:</strong> the name, the chosen avatar, and whether it is a kids
   profile. If you set a password on a profile, the password itself is not stored, only a
-  salted hash of it used to check it. Each cloud account belongs to the profile that
+  salted hash of it used to check it; the same goes for the PIN or password that protects
+  the app. Each cloud account belongs to the profile that
   connected it, which decides whether to share it with the other profiles.</li>
   <li><strong>Preferences:</strong> language, the cloud chosen for syncing, and other
   settings.</li>
 </ul>
 <p>Uninstalling the app removes all of this from the device.</p>
 
-<h2>5. Syncing your folders</h2>
-<p>So your folders look the same on the TV and on the phone, Mosaico keeps a copy of them
-and of your profiles (the same data as in section 4, without your sign-ins or the profile
-chosen on each device) in a file inside the app's
+<h2>5. Syncing your library</h2>
+<p>So your library looks the same on the TV and on the phone, Mosaico keeps a copy of it,
+of your profiles, your progress and your lists (the data in section 4, without your
+sign-ins, the images or the profile chosen on each device) in a file inside the app's
 private folder in your OneDrive or Google Drive. That folder belongs to your account;
 the developer has no access to it.</p>
 
 <h2>6. Video links</h2>
 <p>When you share a link, Mosaico asks YouTube or Dailymotion for the video's title and
-thumbnail; if it is from another site (for example Facebook or X), it reads that page's
-public preview. Links from other sites open in the app or browser that handles them, or
+thumbnail; if it is from another site (for example Vimeo, TikTok, Facebook, Instagram or
+X), it reads that page's public preview. Links from other sites open in the app or browser that handles them, or
 inside Mosaico, and are governed by that site's privacy policy. When you play it, the platform's official app or its embedded player opens,
 and that playback is governed by the privacy policies of
 <a href="https://policies.google.com/privacy">Google (YouTube)</a> or
-<a href="https://legal.dailymotion.com/en/privacy-policy/">Dailymotion</a>.</p>
+<a href="https://legal.dailymotion.com/en/privacy-policy/">Dailymotion</a>, or of the site
+the video belongs to.</p>
 
-<h2>7. Permissions used and why</h2>
+<h2>7. Purchases and permissions used</h2>
 <ul>
-  <li><strong>Internet:</strong> to connect to your cloud, play videos, look up link
-  details, and sync your folders.</li>
+  <li><strong>Internet and network state:</strong> to connect to your cloud or server,
+  play videos, look up link details, and sync your library.</li>
+  <li><strong>Premium purchase:</strong> the one-time purchase that removes the free
+  version's limits is processed by Google Play. Mosaico neither receives nor stores your
+  payment details: it only asks Google Play whether your account already has Premium.</li>
   <li><strong>Local network and biometrics (optional):</strong> if you link your phone to
   open a TV profile with your fingerprint or face, the TV and the phone talk directly over
   your Wi-Fi. Your fingerprint or face is checked by Android on the phone: Mosaico never
@@ -234,8 +278,8 @@ and that playback is governed by the privacy policies of
 <h2>8. Data NOT collected</h2>
 <p>Mosaico collects no personal data for the developer: no own accounts, no location,
 no contacts, no analytics, no advertising, and no telemetry. The only third parties
-involved are Microsoft, Google, YouTube and Dailymotion, for the features described
-above.</p>
+involved are Microsoft, Google (including Google Play and YouTube), Dropbox, the servers
+you connect and the sites of the links you share, for the features described above.</p>
 
 <h2>9. Children</h2>
 <p>The app is not directed at children under 13 and does not knowingly collect data from
@@ -243,11 +287,12 @@ any user. Microsoft and Google accounts are governed by their own family control
 
 <h2>10. Your rights and how to delete your data</h2>
 <ul>
-  <li>You can sign out of each cloud from the app; this removes its access permissions
-  from the device.</li>
+  <li>You can sign out of each cloud or remove each server from the app; this removes its
+  access permissions or its username and password from the device.</li>
   <li>You can revoke Mosaico's access at any time from
   <a href="https://myaccount.google.com/permissions">your Google account</a> or from
-  <a href="https://account.live.com/consent/Manage">your Microsoft account</a>.</li>
+  <a href="https://account.live.com/consent/Manage">your Microsoft account</a> or
+  <a href="https://www.dropbox.com/account/connected_apps">your Dropbox account</a>.</li>
   <li>Data on the device is removed by uninstalling the app. The synced copy can be
   deleted from your Google Drive's connected-apps settings or by deleting the Mosaico
   folder inside "Apps" in your OneDrive.</li>
